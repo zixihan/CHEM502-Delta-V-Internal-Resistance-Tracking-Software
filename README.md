@@ -8,6 +8,7 @@ Formating required of Data.txt file:
 [Charging Capacity] [Discharging Capacity] [Charging Energy] [Discharging Energy]
 
 For example: 
+
 0.68869	0.62762	2.63114	2.32525
 0.19554	0.19468	0.76608	0.71206
 
@@ -16,5 +17,6 @@ After the program was initialted, it would ask for an input for the total cycle 
 The output values for the program would be in the file "Output.txt". 
 
 Example output: 
+
 0.115630601
 0.26017424
