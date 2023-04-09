@@ -1,4 +1,4 @@
-# CHEM_502
+# CHEM502 Delta V Internal Resistance Tracking Software
 Please read this before using python_delta_voltage.py.
 
 The data collected from lab needs to be in file "Data.txt". 
