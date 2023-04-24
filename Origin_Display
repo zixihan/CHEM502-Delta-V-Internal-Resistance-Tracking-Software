@@ -1,0 +1,93 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df1 = pd.read_excel("ECDEC.xlsx",sheet_name="cycle")  #"ECDEC.xlsx" is acquired by customize report, excel (from Neware's BTSDA file)
+df2 = pd.read_excel("S27.xlsx",sheet_name="cycle")
+df3 = pd.read_excel("vcdtd.xlsx",sheet_name="cycle")
+df4 = pd.read_excel("S17.xlsx",sheet_name="cycle")
+df5 = pd.read_excel("S14.xlsx",sheet_name="cycle")
+df6 = pd.read_excel("S28.xlsx",sheet_name="cycle")
+
+s11 = df1["Chg. Energy(Wh)"]
+s12 = df1["Chg. Cap.(Ah)"]
+s13 = df1["DChg. Energy(Wh)"]
+s14 = df1["DChg. Cap.(Ah)"]
+y1 = (s11/s12)-(s13/s14)
+
+s21 = df2["Chg. Energy(Wh)"]
+s22 = df2["Chg. Cap.(Ah)"]
+s23 = df2["DChg. Energy(Wh)"]
+s24 = df2["DChg. Cap.(Ah)"]
+y2 = (s21/s22)-(s23/s24)
+
+s31 = df3["Chg. Energy(Wh)"]
+s32 = df3["Chg. Cap.(Ah)"]
+s33 = df3["DChg. Energy(Wh)"]
+s34 = df3["DChg. Cap.(Ah)"]
+y3 = (s31/s32)-(s33/s34)
+
+s41 = df4["Chg. Energy(Wh)"]
+s42 = df4["Chg. Cap.(Ah)"]
+s43 = df4["DChg. Energy(Wh)"]
+s44 = df4["DChg. Cap.(Ah)"]
+y4 = (s41/s42)-(s43/s44)
+
+s51 = df5["Chg. Energy(Wh)"]
+s52 = df5["Chg. Cap.(Ah)"]
+s53 = df5["DChg. Energy(Wh)"]
+s54 = df5["DChg. Cap.(Ah)"]
+y5 = (s51/s52)-(s53/s54)
+
+s61 = df6["Chg. Energy(Wh)"]
+s62 = df6["Chg. Cap.(Ah)"]
+s63 = df6["DChg. Energy(Wh)"]
+s64 = df6["DChg. Cap.(Ah)"]
+y6 = (s61/s62)-(s63/s64)
+
+x1 = df1["Cycle Index"]
+x2 = df2["Cycle Index"]
+x3 = df3["Cycle Index"]
+x4 = df4["Cycle Index"]
+x5 = df5["Cycle Index"]
+x6 = df6["Cycle Index"]
+
+figsize = 11,8.5
+figure, ax = plt.subplots(figsize=figsize)
+
+plt.scatter(x1,y1,color='blue',label="ECDEC",s=40)
+plt.scatter(x2,y2,color='red',label="S27",s=40)
+plt.scatter(x3,y3,color='green',label="VCDTD",s=40)
+plt.scatter(x4,y4,color='magenta',label="S17",s=40)
+plt.scatter(x5,y5,color='orange',label="S14",s=40)
+plt.scatter(x6,y6,color='pink',label="S28",s=40)
+
+plt.ylim(0,0.55)
+plt.xlim(4,750)
+
+bwith = 3 #边框宽度设置为3
+ax = plt.gca()#获取边框
+ax.spines['bottom'].set_linewidth(bwith)
+ax.spines['left'].set_linewidth(bwith)
+ax.spines['top'].set_linewidth(bwith)
+ax.spines['right'].set_linewidth(bwith)
+
+font2 = {'family' : 'Arial',
+'size'   : 22,}
+
+font3 = {'family' : 'Arial','weight':'bold',
+'size'   : 22,}
+
+plt.xlabel('Cycle number',font3)
+plt.ylabel('delta V',font3)
+
+plt.tick_params(labelsize=22)
+plt.xticks(weight = 'bold')
+plt.yticks(weight = 'bold')
+labels = ax.get_xticklabels() + ax.get_yticklabels()
+[label.set_fontname('Arial') for label in labels]
+ax.tick_params(direction='out', length=8, width=4)
+
+plt.legend(loc='lower center',frameon=False,prop=font2, ncol=3)
+plt.show()
+
+plt.savefig('figure.tiff',dpi=100)
